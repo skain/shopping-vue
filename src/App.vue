@@ -1,12 +1,15 @@
 <script setup>
-// import HelloWorld from './components/HelloWorld.vue'
-// import TheWelcome from './components/TheWelcome.vue'
+import ShoppingItem from './components/ShoppingItem.vue'
 </script>
 
 <template>
-  
+	<div class="container" id="shoppingListContainer">
+		<ShoppingItem />
+	</div>
 </template>
 
 <style scoped>
-
+#shoppingListContainer {
+	margin-top: 10px;
+}
 </style>
