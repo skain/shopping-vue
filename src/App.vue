@@ -1,6 +1,7 @@
 <script setup>
 import ShoppingItem from './components/ShoppingItem.vue'
 import ShoppingList from './shoppingList.js'
+import { watch } from 'vue'
 </script>
 
 <script>
@@ -12,6 +13,12 @@ export default {
 	},
 	mounted() {
 		this.shoppingList.loadFromStorage();
+		watch(this.shoppingList, 
+			(newValue, oldValue) =>  {
+				this.shoppingList.saveToStorage();
+				console.log('here');
+			},
+			{ deep: true });
 	}
 }
 </script>
