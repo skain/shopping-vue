@@ -23,8 +23,8 @@ export default {
 </script>
 <template>
 	<div class="container" id="shoppingListContainer">
-		<div class="row" v-for="item in shoppingList.listItems">
-			<ShoppingItem :item="item" />
+		<div class="row mb-1" v-for="item in shoppingList.listItems">
+			<ShoppingItem :item="item" @removeItemClick="(name) => shoppingList.removeItem(name)" />
 		</div>
 	</div>
 	<div id="addButton" @click="shoppingList.addNewItem()">

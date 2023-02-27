@@ -25,8 +25,8 @@ export default class ShoppingList {
 			}
 		}
 
-		if (indexToRemove) {
-			delete this.listItems[indexToRemove];
+		if (indexToRemove > -1) {
+			this.listItems.splice(indexToRemove, 1);
 		}
 	}
 }
