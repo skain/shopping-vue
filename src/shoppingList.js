@@ -29,6 +29,42 @@ export default class ShoppingList {
 			this.listItems.splice(indexToRemove, 1);
 		}
 	}
+
+	sortItems() {
+		function byName(a, b) {
+			if (a.name < b.name)
+				return -1;
+			if (a.name > b.name)
+				return 1;
+			return 0;
+		}
+
+		function byChecked(a, b) {
+			if (a.checked != b.checked) {
+				if (a.checked) {
+					return 1;
+				}
+				else {
+					return -1;
+				}
+			}
+			else {
+				return 0;
+			}
+		}
+
+		function fullSort(a, b) {
+			let checked = byChecked(a, b);
+			if (checked == 0) {
+				return byName(a, b);
+			}
+			else {
+				return checked;
+			}
+
+		}
+		return this.listItems.sort(fullSort);
+	}
 }
 
 class ShoppingListItem {

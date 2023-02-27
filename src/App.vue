@@ -27,8 +27,9 @@ export default {
 			<ShoppingItem :item="item" @removeItemClick="(name) => shoppingList.removeItem(name)" />
 		</div>
 	</div>
-	<div id="addButton" @click="shoppingList.addNewItem()">
-		+
+	<div id="buttonsDiv">
+		<div class="buttonDiv" @click="shoppingList.sortItems()">&ShortDownArrow;</div>
+		<div id="addButton" class="buttonDiv" @click="shoppingList.addNewItem()">+</div>
 	</div>
 </template>
 
@@ -37,10 +38,13 @@ export default {
 	margin-top: 10px;
 }
 
-#addButton {
+#buttonsDiv {
 	position: fixed;
 	right: 12px;
 	bottom: 21px;
+}
+
+.buttonDiv {
 	border-radius: 40px;
 	font-size: 35px;
 	font-weight: bold;
@@ -49,10 +53,11 @@ export default {
 	text-align: center;
 	height: 60px;
 	width: 60px;
+	float: left;
 }
 
 #addButton:hover {
-		border: solid 1px;
-		background-color: white;
-	}
+	border: solid 1px;
+	background-color: white;
+}
 </style>
