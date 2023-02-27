@@ -13,10 +13,9 @@ export default {
 	},
 	mounted() {
 		this.shoppingList.loadFromStorage();
-		watch(this.shoppingList, 
-			(newValue, oldValue) =>  {
+		watch(this.shoppingList,
+			(newValue, oldValue) => {
 				this.shoppingList.saveToStorage();
-				console.log('here');
 			},
 			{ deep: true });
 	}
@@ -28,10 +27,32 @@ export default {
 			<ShoppingItem :item="item" />
 		</div>
 	</div>
+	<div id="addButton" @click="shoppingList.addNewItem()">
+		+
+	</div>
 </template>
 
 <style scoped>
 #shoppingListContainer {
 	margin-top: 10px;
 }
+
+#addButton {
+	position: fixed;
+	right: 12px;
+	bottom: 21px;
+	border-radius: 40px;
+	font-size: 35px;
+	font-weight: bold;
+	background-color: lightblue;
+	vertical-align: middle;
+	text-align: center;
+	height: 60px;
+	width: 60px;
+}
+
+#addButton:hover {
+		border: solid 1px;
+		background-color: white;
+	}
 </style>
