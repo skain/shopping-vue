@@ -16,12 +16,12 @@ export default {
 </template>
 
 <style scoped>
-.item-cb {
+/* .item-cb {
 	margin-top: 0px;
 	height: 37px;
 	width: 37px;
 
-}
+} */
 
 .item-tb {
 	margin-left: 11px;
