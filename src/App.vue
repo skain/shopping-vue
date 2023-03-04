@@ -22,13 +22,11 @@ export default {
 }
 </script>
 <template>
-	<div class="container" id="shoppingListContainer">
-		<div class="row mb-1" v-for="item in shoppingList.listItems">
-			<ShoppingItem :item="item" @removeItemClick="(name) => shoppingList.removeItem(name)" />
-		</div>
+	<div id="shoppingListContainer">
+			<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem" @removeItemClick="(name) => shoppingList.removeItem(name)" />
 	</div>
 	<div id="buttonsDiv">
-		<div class="buttonDiv" @click="shoppingList.sortItems()">&ShortDownArrow;</div>
+		<div id="sortButton" class="buttonDiv" @click="shoppingList.sortItems()">&ShortDownArrow;</div>
 		<div id="addButton" class="buttonDiv" @click="shoppingList.addNewItem()">+</div>
 	</div>
 </template>
@@ -36,6 +34,11 @@ export default {
 <style scoped>
 #shoppingListContainer {
 	margin-top: 10px;
+	margin-inline: auto;
+	max-width: 400px;
+	display: grid;
+	grid-template-columns: 1fr 80vw 1fr;
+	row-gap: 4px;
 }
 
 #buttonsDiv {
@@ -45,19 +48,20 @@ export default {
 }
 
 .buttonDiv {
-	border-radius: 40px;
-	font-size: 35px;
+	border-radius: 20px;
+	font-size: 24px;
 	font-weight: bold;
 	background-color: lightblue;
 	vertical-align: middle;
 	text-align: center;
-	height: 60px;
-	width: 60px;
+	height: 38px;
+	width: 38px;
+	line-height: 38px;
 	float: left;
+	margin-right: 2px;
 }
 
-#addButton:hover {
-	border: solid 1px;
-	background-color: white;
+#sortButton {
+	line-height: 32px;
 }
 </style>

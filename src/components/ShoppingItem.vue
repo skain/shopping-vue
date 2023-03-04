@@ -4,27 +4,42 @@ export default {
 }
 </script>
 <template>
-	<div class="col-1">
-		<input class="form-check-input item-cb" type="checkbox" v-model="item.checked">
+	<div>
+		<input class="item-cb" type="checkbox" v-model="item.checked">
 	</div>
-	<div class="col-10">
-		<input class="form-control item-tb" type="text" v-model="item.name">
+	<div>
+		<input class="item-tb" type="text" v-model="item.name">
 	</div>
-	<!-- <div class="col-1"> -->
-		<button type="button" class="col-1 btn btn-secondary btn-sm" @click="$emit('removeItemClick', item.name)">X</button>
-	<!-- </div> -->
+	<div>
+		<button type="button" class="btn" @click="$emit('removeItemClick', item.name)">X</button>
+	</div>
 </template>
 
 <style scoped>
-/* .item-cb {
-	margin-top: 0px;
-	height: 37px;
-	width: 37px;
-
-} */
-
 .item-tb {
-	margin-left: 11px;
+	width: 95%;
+	border: solid 1px darkgray;
+	padding: 4px 6px;
+	border-radius: 4px;
 }
 
+.item-cb {
+	margin: 6px;
+	transform: scale(2);
+}
+
+input:checked {
+	accent-color: rgb(194, 70, 48);
+}
+
+.btn {
+	line-height: 20px;
+	background-color: darkgray;
+	color: white;
+	border-radius: 5px;
+	border: 1px solid rgb(112, 112, 112);
+	padding: 1px 6px;
+	font-weight: bold;
+	margin-left: 2px;
+}
 </style>
