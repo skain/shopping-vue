@@ -33,17 +33,15 @@ export default {
 
 <style scoped>
 #shoppingListContainer {
-	margin-top: 10px;
-	margin-inline: auto;
-	max-width: 400px;
 	display: grid;
-	grid-template-columns: 1fr 80vw 1fr;
+	grid-template-columns: .5fr max(275px, 36vw) 2fr;
 	row-gap: 4px;
+	column-gap: 10px;
 }
 
 #buttonsDiv {
 	position: fixed;
-	right: 12px;
+	right: calc(50vw - (var(--list-width) / 2));
 	bottom: 21px;
 }
 

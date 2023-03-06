@@ -1,8 +1,18 @@
-body, input {
+:root {
+	--list-width: max(360px, 40vw);
+}
+
+body, input, button {
 	font-family: 'Ubuntu', sans-serif;
+	font-size: 1.5rem;
 }
 
 html {
 	background-image: radial-gradient(rgb(226, 213, 213), rgba(255, 208, 0, 0.616));
 	background-attachment: fixed;
+}
+
+#app {
+	margin: auto;
+	width: var(--list-width);
 }
