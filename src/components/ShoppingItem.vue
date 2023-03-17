@@ -1,7 +1,6 @@
 <script setup>
-const props = ['item'];
+const props = defineProps({ item: Object});
 </script>
-
 <template>
 	<div style="align-self: center;">
 		<input class="item-cb" type="checkbox" v-model="item.checked">

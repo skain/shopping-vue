@@ -4,7 +4,6 @@ import ShoppingList from './shoppingList.js'
 import { ref, watch } from 'vue'
 
 const shoppingList = ref(new ShoppingList());
-console.log(shoppingList);
 shoppingList.value.loadFromStorage();
 watch(shoppingList, () => shoppingList.value.saveToStorage(), { deep: true });
 </script>
