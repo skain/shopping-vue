@@ -1,26 +1,14 @@
 <script setup>
 import ShoppingItem from './components/ShoppingItem.vue'
 import ShoppingList from './shoppingList.js'
-import { watch } from 'vue'
+import { ref, watch } from 'vue'
+
+const shoppingList = ref(new ShoppingList());
+console.log(shoppingList);
+shoppingList.value.loadFromStorage();
+watch(shoppingList, () => shoppingList.value.saveToStorage(), { deep: true });
 </script>
 
-<script>
-export default {
-	data() {
-		return {
-			shoppingList: new ShoppingList()
-		}
-	},
-	mounted() {
-		this.shoppingList.loadFromStorage();
-		watch(this.shoppingList,
-			(newValue, oldValue) => {
-				this.shoppingList.saveToStorage();
-			},
-			{ deep: true });
-	}
-}
-</script>
 <template>
 	<div id="shoppingListContainer">
 			<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem" @removeItemClick="(name) => shoppingList.removeItem(name)" />
