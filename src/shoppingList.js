@@ -63,7 +63,7 @@ export default class ShoppingList {
 			}
 
 		}
-		return this.listItems.sort(fullSort);
+		return [...this.listItems].sort(fullSort);
 	}
 }
 

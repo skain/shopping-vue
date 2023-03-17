@@ -1,7 +1,7 @@
 <script setup>
-import ShoppingItem from './components/ShoppingItem.vue'
-import ShoppingList from './shoppingList.js'
-import { watch } from 'vue'
+import ShoppingItem from './components/ShoppingItem.vue';
+import ShoppingList from './shoppingList.js';
+import { watch } from 'vue';
 </script>
 
 <script>
@@ -10,6 +10,9 @@ export default {
 		return {
 			shoppingList: new ShoppingList()
 		}
+	},
+	computed: {
+		sortedItems: () => this.shoppingList.sortItems()
 	},
 	mounted() {
 		this.shoppingList.loadFromStorage();
@@ -23,7 +26,7 @@ export default {
 </script>
 <template>
 	<div id="shoppingListContainer">
-			<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem" @removeItemClick="(name) => shoppingList.removeItem(name)" />
+			<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem" @removeItemClick="(name) => shoppingList.removeItem(name)" @sortDataChanged="shoppingList.sortItems()" />
 	</div>
 	<div id="buttonsDiv">
 		<div id="sortButton" class="buttonDiv" @click="shoppingList.sortItems()">&ShortDownArrow;</div>

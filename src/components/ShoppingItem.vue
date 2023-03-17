@@ -1,8 +1,13 @@
+<script setup>
+import { watch, ref, computed } from 'vue';
+</script>
+
 <script>
 export default {
 	props: ['item']
 }
 </script>
+
 <template>
 	<div style="align-self: center;">
 		<input class="item-cb" type="checkbox" v-model="item.checked">
