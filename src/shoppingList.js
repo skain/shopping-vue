@@ -71,5 +71,6 @@ class ShoppingListItem {
 	constructor(name) {
 		this.name = name;
 		this.checked = false;
+		this.id = Date.now();
 	}
 }
