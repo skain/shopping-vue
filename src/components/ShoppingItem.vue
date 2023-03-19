@@ -14,6 +14,14 @@ const props = defineProps({ item: Object});
 </template>
 
 <style scoped>
+input {
+	opacity: 0.75;
+}
+
+input:focus {
+	opacity: 1.0;
+}
+
 .item-tb {
 	width: 99%;
 	border: solid 1px darkgray;
