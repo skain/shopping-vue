@@ -30,7 +30,7 @@ export default class ShoppingList {
 		}
 	}
 
-	sortItems() {
+	getSortedItems() {
 		function byName(a, b) {
 			if (a.name < b.name)
 				return -1;
@@ -63,7 +63,11 @@ export default class ShoppingList {
 			}
 
 		}
-		return this.listItems.sort(fullSort);
+		return [...this.listItems].sort(fullSort);
+	}
+
+	sortItems() {
+		this.listItems = this.getSortedItems();
 	}
 }
 

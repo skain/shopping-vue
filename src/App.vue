@@ -1,11 +1,11 @@
 <script setup>
 import ShoppingItem from './components/ShoppingItem.vue'
 import ShoppingList from './shoppingList.js'
-import { ref, watch } from 'vue'
+import { ref, watch, computed, reactive } from 'vue'
 
-const shoppingList = ref(new ShoppingList());
-shoppingList.value.loadFromStorage();
-watch(shoppingList, () => shoppingList.value.saveToStorage(), { deep: true });
+const shoppingList = reactive(new ShoppingList());
+shoppingList.loadFromStorage();
+watch(shoppingList, () => shoppingList.saveToStorage(), { deep: true });
 </script>
 
 <template>
