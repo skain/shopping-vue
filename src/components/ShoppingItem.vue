@@ -34,7 +34,7 @@ input:focus {
 }
 
 input:checked {
-	accent-color: rgb(194, 70, 48);
+	accent-color: var(--accent-color);
 }
 
 .btn {
