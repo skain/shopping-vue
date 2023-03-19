@@ -11,13 +11,18 @@ function onItemChanged() {
 	shoppingList.saveToStorage();
 }
 
-watch(shoppingList, () => shoppingList.saveToStorage(), { deep: true });
+function onItemRemoved(name) {
+	shoppingList.removeItem(name);
+	onItemChanged();
+}
+
+// watch(shoppingList, () => shoppingList.saveToStorage(), { deep: true });
 </script>
 
 <template>
 	<div id="shoppingListContainer">
 		<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem"
-			:key="listItem.id" @removeItemClick="(name) => shoppingList.removeItem(name)" @itemChanged="onItemChanged" />
+			:key="listItem.id" @removeItemClick="(name) => onItemRemoved(name)" @itemChanged="onItemChanged" />
 	</div>
 	<div id="buttonsDiv">
 		<div id="sortButton" class="buttonDiv" @click="shoppingList.sortItems()">&ShortDownArrow;</div>
