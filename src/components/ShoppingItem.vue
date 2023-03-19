@@ -3,10 +3,10 @@ const props = defineProps({ item: Object});
 </script>
 <template>
 	<div style="align-self: center;">
-		<input class="item-cb" type="checkbox" v-model="item.checked">
+		<input class="item-cb" type="checkbox" v-model="item.checked" @blur="$emit('itemChanged')">
 	</div>
 	<div>
-		<input class="item-tb" type="text" v-model="item.name">
+		<input class="item-tb" type="text" v-model="item.name" @blur="$emit('itemChanged')" >
 	</div>
 	<div style="justify-self: right;">
 		<button type="button" class="btn" @click="$emit('removeItemClick', item.name)">X</button>

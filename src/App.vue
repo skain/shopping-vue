@@ -5,13 +5,19 @@ import { ref, watch, computed, reactive } from 'vue'
 
 const shoppingList = reactive(new ShoppingList());
 shoppingList.loadFromStorage();
+
+function onItemChanged() {
+	shoppingList.sortItems();
+	shoppingList.saveToStorage();
+}
+
 watch(shoppingList, () => shoppingList.saveToStorage(), { deep: true });
 </script>
 
 <template>
 	<div id="shoppingListContainer">
 		<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem"
-			:key="listItem.id" @removeItemClick="(name) => shoppingList.removeItem(name)" />
+			:key="listItem.id" @removeItemClick="(name) => shoppingList.removeItem(name)" @itemChanged="onItemChanged" />
 	</div>
 	<div id="buttonsDiv">
 		<div id="sortButton" class="buttonDiv" @click="shoppingList.sortItems()">&ShortDownArrow;</div>
