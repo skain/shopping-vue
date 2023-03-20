@@ -27,25 +27,33 @@ function onPPUCClicked() {
 </script>
 
 <template>
-	<div id="addItemDiv">
+	<div id="navDiv">
 		<button type="button" class="navButton" id="addButton" @click="onNewItemClicked">+</button>
 		<button type="button" class="navButton" id="PPUCButton" @click="onPPUCClicked">$/#</button>
 	</div>
-	<div id="shoppingListContainer">
-		<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem" :key="listItem.id"
-			@removeItemClick="(name) => onItemRemoved(name)" @itemChanged="onItemChanged" />
+	<div id="appContainer">
+		<div id="shoppingListContainer">
+			<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem" :key="listItem.id"
+				@removeItemClick="(name) => onItemRemoved(name)" @itemChanged="onItemChanged" />
+		</div>
 	</div>
 </template>
 
 <style scoped>
-#addItemDiv {
-	position: fixed;
+#appContainer {
+	margin: auto;
+	width: var(--list-width);
+}
+
+#navDiv {
+	position: sticky;
 	top: 0;
-	left: 0;
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	margin-top: 1rem;
+	padding: 1rem 0;
+	background-color: rgb(255, 242, 182);
+	z-index: 1;
 }
 
 .navButton {
@@ -64,10 +72,11 @@ function onPPUCClicked() {
 #PPUCButton {
 	font-size: 1.0rem;
 	margin-left: 6px;
+	border-width: 1px;
 }
 
 #shoppingListContainer {
-	margin-top: calc(4rem);
+	margin-top: 1rem;
 	display: grid;
 	grid-template-columns: .5fr max(275px, 36vw) 2fr;
 	row-gap: 4px;

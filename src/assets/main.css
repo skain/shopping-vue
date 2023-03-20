@@ -8,12 +8,10 @@ body, input, button {
 	font-size: 1.5rem;
 }
 
+body {
+	margin: 0px;
+}
 html {
 	background-image: radial-gradient(rgb(226, 213, 213), rgba(255, 208, 0, 0.616));
 	background-attachment: fixed;
-}
-
-#app {
-	margin: auto;
-	width: var(--list-width);
 }
