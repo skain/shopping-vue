@@ -19,6 +19,7 @@ function onItemRemoved(name) {
 function onNewItemClicked() {
 	shoppingList.addNewItem();
 	shoppingList.sortItems();
+	window.scrollTo(0, 0);
 }
 
 function onPPUCClicked() {
