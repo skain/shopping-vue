@@ -1,6 +1,8 @@
 :root {
 	--list-width: max(360px, 40vw);
 	--accent-color: rgb(194, 70, 48);
+	--flat-bg-color: rgb(255, 242, 182);
+	--off-black: #454545;
 }
 
 body, input, button {

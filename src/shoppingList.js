@@ -4,12 +4,20 @@ export default class ShoppingList {
 		this.localStorageKey = 'shoppingList';
 	}
 
+	getJSONFromStorage() {
+		return localStorage.getItem(this.localStorageKey);
+	}
+
+	saveJSONToStorage(json) {
+		localStorage.setItem(this.localStorageKey, json);
+	}
+
 	loadFromStorage() {
-		this.listItems = JSON.parse(localStorage.getItem(this.localStorageKey)) ?? [new ShoppingListItem('bananas'), new ShoppingListItem('xxx')];
+		this.listItems = JSON.parse(this.getJSONFromStorage()) ?? [new ShoppingListItem('bananas'), new ShoppingListItem('xxx')];
 	}
 
 	saveToStorage() {
-		localStorage.setItem(this.localStorageKey, JSON.stringify(this.listItems));
+		this.saveJSONToStorage(JSON.stringify(this.listItems));
 	}
 
 	addNewItem() {
