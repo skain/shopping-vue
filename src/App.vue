@@ -40,7 +40,7 @@ function getCopiedNotification() {
 
 function loadExportImportTextFromList() {
 	const listData = shoppingList.getJSONFromStorage();
-	getImportExportTextArea().textContent = listData;
+	getImportExportTextArea().value = listData;
 	navigator.clipboard.writeText(listData);
 	getCopiedNotification().style.visibility = 'visible';
 }
@@ -55,8 +55,35 @@ function onImportExportOKClicked() {
 }
 
 function onClearTextClicked() {
-	getImportExportTextArea().textContent = '';
+	getImportExportTextArea().value = '';
 	getCopiedNotification().style.visibility = 'hidden';
+}
+
+function JSONIsValid(json) {
+	try
+	{
+		JSON.parse(json);
+		return true;
+	}
+	catch 
+	{
+		return false;
+	}
+}
+
+function onImportClicked() {
+	const toImport = getImportExportTextArea().value;
+	if (confirm(`Import: ${toImport}`)) {
+		if (JSONIsValid(toImport)) {
+			shoppingList.saveJSONToStorage(toImport);
+			shoppingList.loadFromStorage();
+		}
+		else {
+			alert("JSON is not valid!");
+		}
+	} else {
+		alert('Import cancelled.');
+	}
 }
 </script>
 
