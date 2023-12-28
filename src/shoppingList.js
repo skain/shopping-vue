@@ -13,7 +13,7 @@ export default class ShoppingList {
 		if (!this.itemFilter) {
 			return this._listItems
 		}
-		return this._listItems.filter((item) => item.name.includes(this.itemFilter));
+		return this._listItems.filter((item) => item.name.toLowerCase().includes(this.itemFilter.toLowerCase()));
 	}
 
 	getJSONFromStorage() {
