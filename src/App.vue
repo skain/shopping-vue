@@ -1,14 +1,24 @@
 <script setup>
 import ShoppingItem from './components/shoppingItem.vue'
 import ShoppingList from './shoppingList.js'
-import { ref, watch, computed, reactive } from 'vue'
+import { reactive, toRefs } from 'vue'
 
 const shoppingList = reactive(new ShoppingList());
+var { itemFilter } = toRefs(shoppingList);
 shoppingList.loadFromStorage();
 
 function onItemChanged() {
 	shoppingList.sortItems();
 	shoppingList.saveToStorage();
+}
+
+function onItemNameChanged() {
+	onItemChanged();
+}
+
+function onItemCheckedChanged() {
+	shoppingList.itemFilter = '';
+	onItemChanged();
 }
 
 function onItemRemoved(name) {
@@ -17,8 +27,8 @@ function onItemRemoved(name) {
 }
 
 function onNewItemClicked() {
-	shoppingList.addNewItem();
-	shoppingList.sortItems();
+	shoppingList.addNewItem(shoppingList.itemFilter);
+	onItemChanged();
 	window.scrollTo(0, 0);
 }
 
@@ -59,6 +69,10 @@ function onClearTextClicked() {
 	getCopiedNotification().style.visibility = 'hidden';
 }
 
+function onClearFilterClicked() {
+	shoppingList.itemFilter = '';
+}
+
 function JSONIsValid(json) {
 	try
 	{
@@ -89,14 +103,16 @@ function onImportClicked() {
 
 <template>
 	<div id="navDiv">
-		<button type="button" class="navButton" id="addButton" @click="onNewItemClicked">+</button>
-		<button type="button" class="navButton" id="PPUCButton" @click="onPPUCClicked">$/#</button>
-		<button type="button" class="navButton" id="exportImportButton" @click="onExportImportClicked">&uarr; &darr;</button>
+		<input type="text" v-model="itemFilter" placeholder="Filter/Add New Item">
+		<button type="button" class="navButton" id="addButton" title="Add new item" @click="onNewItemClicked" v-show="shoppingList.listItems.length < 1">+</button>
+		<button type="button" class="navButton" id="clearFilterButton" title="Clear filter" @click="onClearFilterClicked">X</button>
+		<button type="button" class="navButton" id="PPUCButton" title="PricePerUnit Calculator" @click="onPPUCClicked">$/#</button>
+		<button type="button" class="navButton" id="exportImportButton" title="Export/Import" @click="onExportImportClicked">&uarr; &darr;</button>
 	</div>
 	<div id="appContainer">
 		<div id="shoppingListContainer">
 			<ShoppingItem v-for="listItem in shoppingList.listItems" :item="listItem" :key="listItem.id"
-				@removeItemClick="(name) => onItemRemoved(name)" @itemChanged="onItemChanged" />
+				@removeItemClick="(name) => onItemRemoved(name)" @itemCheckedChanged="onItemCheckedChanged" @itemNameChanged="onItemNameChanged" />
 		</div>
 	</div>
 	<dialog id="importExportDialog">

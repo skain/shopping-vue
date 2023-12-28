@@ -1,7 +1,19 @@
 export default class ShoppingList {
 	constructor() {
-		this.listItems = [];
+		this._listItems = [];
 		this.localStorageKey = 'shoppingList';
+		this.itemFilter = '';
+	}
+
+	get listItems() {
+		return this.applyItemFilterToListItems();
+	}
+
+	applyItemFilterToListItems() {
+		if (!this.itemFilter) {
+			return this._listItems
+		}
+		return this._listItems.filter((item) => item.name.includes(this.itemFilter));
 	}
 
 	getJSONFromStorage() {
@@ -24,28 +36,29 @@ export default class ShoppingList {
 	}
 
 	loadFromStorage() {
-		this.listItems = this.parseJSONFromStorage() ?? [new ShoppingListItem('bananas'), new ShoppingListItem('xxx')];
+		this._listItems = this.parseJSONFromStorage() ?? [new ShoppingListItem('bananas'), new ShoppingListItem('xxx')];
 	}
 
 	saveToStorage() {
-		this.saveJSONToStorage(JSON.stringify(this.listItems));
+		this.saveJSONToStorage(JSON.stringify(this._listItems));
 	}
 
-	addNewItem() {
-		this.listItems.push(new ShoppingListItem(''));
+	addNewItem(itemName) {
+		console.log(`Adding: ${itemName}`);
+		this._listItems.push(new ShoppingListItem(itemName));
 	}
 
 	removeItem(name) {
 		let indexToRemove = null;
-		for (let i = 0; i < this.listItems.length; i++) {
-			if (this.listItems[i].name === name) {
+		for (let i = 0; i < this._listItems.length; i++) {
+			if (this._listItems[i].name === name) {
 				indexToRemove = i;
 				break;
 			}
 		}
 
 		if (indexToRemove > -1) {
-			this.listItems.splice(indexToRemove, 1);
+			this._listItems.splice(indexToRemove, 1);
 		}
 	}
 
@@ -82,11 +95,11 @@ export default class ShoppingList {
 			}
 
 		}
-		return [...this.listItems].sort(fullSort);
+		return [...this._listItems].sort(fullSort);
 	}
 
 	sortItems() {
-		this.listItems = this.getSortedItems();
+		this._listItems = this.getSortedItems();
 	}
 }
 
