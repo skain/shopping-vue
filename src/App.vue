@@ -103,7 +103,7 @@ function onImportClicked() {
 
 <template>
 	<div id="navDiv">
-		<input type="text" v-model="itemFilter" placeholder="Filter/Add New Item">
+		<input type="text" v-model="itemFilter" id="filterAddTb" placeholder="Filter/Add New Item">
 		<button type="button" class="navButton" id="addButton" title="Add new item" @click="onNewItemClicked" v-show="shoppingList.listItems.length < 1">+</button>
 		<button type="button" class="navButton" id="clearFilterButton" title="Clear filter" @click="onClearFilterClicked">X</button>
 		<button type="button" class="navButton" id="PPUCButton" title="PricePerUnit Calculator" @click="onPPUCClicked">$/#</button>
@@ -147,12 +147,12 @@ h4 {
 	top: 0;
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	padding: 1rem 0;
+	padding: 1rem .5rem;
 	background-color: var(--flat-bg-color);
 	opacity: 0.9;
 	z-index: 1;
 	gap: 4px;
+	flex-wrap: wrap;
 }
 
 .navButton {
@@ -172,7 +172,8 @@ h4 {
 #shoppingListContainer {
 	margin-top: 1rem;
 	display: grid;
-	grid-template-columns: .5fr max(275px, 36vw) 2fr;
+	/* grid-template-columns: .5fr max(275px, 36vw) 2fr; */
+	grid-template-columns: auto 1fr auto;
 	row-gap: 4px;
 	column-gap: 10px;
 }
@@ -211,5 +212,9 @@ h4 {
 	font-size: .8rem;
 	color: red;
 	visibility: hidden;
+}
+
+#filterAddTb {
+	flex: 2;
 }
 </style>
